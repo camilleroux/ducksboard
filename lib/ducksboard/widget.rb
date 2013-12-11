@@ -32,6 +32,11 @@ module Ducksboard
         :basic_auth => auth,
         :body => @data.to_json)
     end
+    
+    def empty
+      self.class.delete("#{PUSH_URI}/#{@id.to_s}",
+        :basic_auth => auth)
+    end
 
     def save
       if valid?
